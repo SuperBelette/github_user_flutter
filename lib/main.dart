@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/api/api.dart';
+import 'package:githubuserflutter/details.dart';
 
 import 'models/user.dart';
 
@@ -63,15 +64,24 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisCount: 3,
         // Generate 100 widgets that display their index in the List.
         children: List.generate(users.length, (index) {
-          return Center(
-            child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
+          return FlatButton(
+              padding: EdgeInsets.all(0),
+              onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails(user: users[index],)),
+              );
+            },
+            child: Expanded(
+              child: Card(
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Image(
+                    image: NetworkImage(users[index].avatarUrl),
+                ),
               ),
-              child: Image.network(users[index].avatarUrl),
-            )
+            ),
           );
         }),
       ),
