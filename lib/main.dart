@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/api/api.dart';
 import 'package:githubuserflutter/details.dart';
+import 'package:githubuserflutter/favorites.dart';
+import 'package:githubuserflutter/models/favorites.dart';
+import 'package:provider/provider.dart';
 
 import 'models/user.dart';
 
@@ -14,13 +17,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return ChangeNotifierProvider(
+      create: (context) => Favorites(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -56,7 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
   build(context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("User List"),
+          title: Text("Github Users"),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.favorite),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FavoritesView())))
+
+          ],
         ),
       body: GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
@@ -67,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return FlatButton(
               padding: EdgeInsets.all(0),
               onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails(user: users[index],)),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails(user: users[index]),
+              ),
               );
             },
             child: Expanded(
