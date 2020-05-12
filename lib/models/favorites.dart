@@ -26,4 +26,13 @@ class Favorites extends ChangeNotifier {
   User get(int index){
     return _users[index];
   }
+
+  bool contains(User user){
+    return _users.contains(user);
+  }
+
+  void remove(User user) {
+    _users.remove(user);
+    notifyListeners();
+  }
 }

@@ -18,7 +18,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<User> users;
+  List<User> users = [];
 
   @override
   void initState() {
@@ -33,7 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
         users = list.map((model) => User.fromJson(model)).toList();
       });
     });
-
   }
 
   @override
@@ -61,16 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               );
             },
-            child: Expanded(
-              child: Card(
-                semanticContainer: true,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Image(
-                  image: NetworkImage(users[index].avatarUrl),
-                ),
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Image(
+                image: NetworkImage(users[index].avatarUrl),
               ),
             ),
           );
@@ -78,6 +75,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
-
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/favorites.dart';
+import 'details.dart';
 
 class FavoritesView extends StatelessWidget{
   @override
@@ -11,11 +12,30 @@ class FavoritesView extends StatelessWidget{
     var favorites = Provider.of<Favorites>(context);
 
     return Scaffold(
-      backgroundColor: Colors.green,
+      appBar: AppBar(
+        title: Text('favorites'),
+      ),
       body: GridView.count(
           crossAxisCount: 3,
         children: List.generate(favorites.getLenght(), (index) {
-          return Image.network(favorites.get(index).avatarUrl);
+          return FlatButton(
+            padding: EdgeInsets.all(0),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails(user: favorites.get(index)),
+              ),
+              );
+            },
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Image(
+                image: NetworkImage(favorites.get(index).avatarUrl),
+              ),
+            ),
+          );
         }),
       ),
     );

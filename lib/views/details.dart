@@ -13,8 +13,6 @@ class UserDetails extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    var favorites = Provider.of<Favorites>(context);
-
 
     return Scaffold(
       backgroundColor: Colors.blue,
@@ -29,27 +27,63 @@ class UserDetails extends StatelessWidget{
               backgroundImage: NetworkImage(user.avatarUrl),
               radius: 90,
             ),
-            FlatButton(
-              onPressed: () { favorites.add(user); },
-              child: Card(
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.add,
-                      color: Colors.teal,
-                    ),
-                    title: Text(
-                      'add to favorites',
-                      style: TextStyle(
-                        color: Colors.teal.shade900,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  )),
-            ),
+
+            FavoriteCard(user: user)
           ],
         ),
       ),
+    );
+  }
+
+}
+
+class FavoriteCard extends StatefulWidget{
+  final User user;
+
+  const FavoriteCard({Key key, this.user}) : super(key: key);
+
+  _FavoriteCardState createState() => _FavoriteCardState();
+
+}
+
+class _FavoriteCardState extends State<FavoriteCard>{
+
+  @override
+  Widget build(BuildContext context) {
+    var favorites = Provider.of<Favorites>(context);
+
+    String text = '';
+    if(favorites.contains(widget.user)){
+      text = 'delete from favorite';
+    }
+    else {
+      text = 'add to favorites';
+    }
+
+    return FlatButton(
+      onPressed: () {
+      if(favorites.contains(widget.user)){
+        favorites.remove(widget.user);
+      }
+      else {
+        favorites.add(widget.user);
+      }
+      },
+      child: Card(
+          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+          child: ListTile(
+            leading: Icon(
+              Icons.add,
+              color: Colors.teal,
+            ),
+            title: Text(
+              text,
+              style: TextStyle(
+                color: Colors.teal.shade900,
+                fontSize: 20.0,
+              ),
+            ),
+          )),
     );
   }
 
