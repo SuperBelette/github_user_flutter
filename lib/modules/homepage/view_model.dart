@@ -6,10 +6,11 @@ import 'package:githubuserflutter/models/user.dart';
 
 class HomeViewModel extends ChangeNotifier {
   List<User> users = [];
+  Api api;
 
   Future<void> getUsers() async {
     try {
-      final response = await Api().getUsers();
+      final response = await api.getUsers();
       if (response.statusCode == 403) {
         print(response.reasonPhrase);
       } else {

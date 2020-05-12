@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/modules/homepage/view_model.dart';
@@ -47,9 +48,14 @@ class __ViewState extends State<_View> {
         title: Text("Github Users"),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.favorite),
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FavoritesView())))
+            icon: Icon(Icons.favorite),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FavoritesView(),
+              ),
+            ),
+          ),
         ],
       ),
       body: GridView.count(
@@ -59,13 +65,14 @@ class __ViewState extends State<_View> {
         // Generate 100 widgets that display their index in the List.
         children: List.generate(_viewModel.users.length, (index) {
           return FlatButton(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      UserDetails(user: _viewModel.users[index]),
+                  builder: (context) => UserDetails(
+                    user: _viewModel.users[index],
+                  ),
                 ),
               );
             },
@@ -73,10 +80,10 @@ class __ViewState extends State<_View> {
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: Image(
-                image: NetworkImage(_viewModel.users[index].avatarUrl),
+              child: CachedNetworkImage(
+                imageUrl: _viewModel.users[index].avatarUrl,
               ),
             ),
           );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:githubuserflutter/models/favorites.dart';
 import 'package:githubuserflutter/modules/homepage/view.dart';
+import 'package:githubuserflutter/notifiers/favorites_notifier.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => Favorites(),
+      create: (context) => FavoritesNotifier(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

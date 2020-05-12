@@ -1,33 +1,32 @@
-
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:githubuserflutter/models/user.dart';
 
-class Favorites extends ChangeNotifier {
+class FavoritesNotifier extends ChangeNotifier {
   final List<User> _users = [];
 
   UnmodifiableListView<User> get items => UnmodifiableListView(_users);
 
-  void add(User user){
+  void add(User user) {
     _users.add(user);
     notifyListeners();
   }
 
-  void removeall(){
+  void removeall() {
     _users.clear();
     notifyListeners();
   }
 
-  int getLenght(){
+  int getLenght() {
     return _users.length;
   }
 
-  User get(int index){
+  User get(int index) {
     return _users[index];
   }
 
-  bool contains(User user){
+  bool contains(User user) {
     return _users.contains(user);
   }
 
