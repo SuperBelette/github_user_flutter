@@ -18,4 +18,12 @@ class Favorites extends ChangeNotifier {
     _users.clear();
     notifyListeners();
   }
+
+  int getLenght(){
+    return _users.length;
+  }
+
+  User get(int index){
+    return _users[index];
+  }
 }
