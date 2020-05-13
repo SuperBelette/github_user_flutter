@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94c1ec7d-7233-44c0-9fea-2db6a7e9c0db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/api/api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/modules/details/view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/modules/details/view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/modules/favorites/view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/modules/favorites/view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/modules/homepage/view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/modules/homepage/view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/favorites.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

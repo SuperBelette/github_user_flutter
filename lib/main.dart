@@ -4,7 +4,8 @@ import 'package:githubuserflutter/api/api.dart';
 import 'package:githubuserflutter/models/favorites.dart';
 import 'package:provider/provider.dart';
 
-import 'modules/homepage/view.dart';
+import 'package:githubuserflutter/modules/homepage/view.dart';
+
 
 
 void main() {
