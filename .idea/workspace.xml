@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94c1ec7d-7233-44c0-9fea-2db6a7e9c0db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/modules/details/view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/modules/details/view_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/modules/favorites/view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/modules/favorites/view_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/modules/homepage/view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/modules/homepage/view_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/api/api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/api.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/details.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/favorites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/favorites.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/home.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/modules/homepage/view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/modules/homepage/view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/home.dart" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +67,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

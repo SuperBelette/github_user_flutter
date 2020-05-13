@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class Api {
+class Api{
   final String baseUrl = 'api.github.com';
 
   Future getUsers(){

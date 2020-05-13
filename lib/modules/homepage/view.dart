@@ -12,8 +12,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => HomeViewModel(api: Api()),
+    return ChangeNotifierProxyProvider<Api, HomeViewModel>(
+      create: (context) => HomeViewModel(),
+      update: (_, api, viewmodel) => viewmodel..api = api,
       child: _View(),
     );
   }
@@ -60,10 +61,7 @@ class __ViewState extends State<_View> {
         ],
       ),
       body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
         crossAxisCount: 3,
-        // Generate 100 widgets that display their index in the List.
         children: List.generate(_viewModel?.users?.length ?? 0, (index) {
           return FlatButton(
             padding: const EdgeInsets.all(0),
