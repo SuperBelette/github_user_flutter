@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/api/api.dart';
 import 'package:githubuserflutter/models/user.dart';
+import 'package:githubuserflutter/modules/details/view.dart';
 
-import 'details.dart';
 import 'favorites.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -48,15 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
         crossAxisCount: 3,
-        // Generate 100 widgets that display their index in the List.
         children: List.generate(users.length, (index) {
           return FlatButton(
             padding: EdgeInsets.all(0),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails(user: users[index]),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Details(user: users[index]),
               ),
               );
             },

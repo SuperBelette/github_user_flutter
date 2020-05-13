@@ -1,10 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:githubuserflutter/modules/details/view.dart';
 import 'package:provider/provider.dart';
 
 import '../models/favorites.dart';
-import 'details.dart';
 
 class FavoritesView extends StatelessWidget{
   @override
@@ -21,7 +21,7 @@ class FavoritesView extends StatelessWidget{
           return FlatButton(
             padding: EdgeInsets.all(0),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails(user: favorites.get(index)),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Details(user: favorites.get(index)),
               ),
               );
             },
