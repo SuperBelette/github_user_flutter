@@ -1,11 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:githubuserflutter/models/favorites.dart';
+import 'package:githubuserflutter/models/user.dart';
 import 'package:githubuserflutter/modules/details/view_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/favorites.dart';
-import '../../models/user.dart';
+
 
 class Details extends StatelessWidget{
   final User user;
@@ -33,10 +34,17 @@ class _View extends StatefulWidget{
 class __ViewState extends State<_View>{
   DetailsViewModel _viewModel;
 
+
+  @override
+  void didChangeDependencies() {
+    final _viewModel = context.read<DetailsViewModel>();
+    if (_viewModel != this._viewModel) {
+      this._viewModel = _viewModel;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _viewModel = context.watch<DetailsViewModel>();
-
     var favorites = Provider.of<Favorites>(context);
 
     String text = '';

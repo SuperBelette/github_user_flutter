@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/api/api.dart';
 import 'package:githubuserflutter/modules/details/view.dart';
+import 'package:githubuserflutter/modules/favorites/view.dart';
 import 'package:githubuserflutter/modules/homepage/view_model.dart';
-import 'package:githubuserflutter/views/favorites.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -54,7 +54,7 @@ class __ViewState extends State<_View> {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => FavoritesView(),
+                builder: (context) => Favorite(),
               ),
             ),
           ),
