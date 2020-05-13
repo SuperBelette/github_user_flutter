@@ -5,7 +5,9 @@ import 'package:githubuserflutter/api/api.dart';
 import 'package:githubuserflutter/models/user.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  List<User> users = [];
+  HomeViewModel({this.api});
+
+  List<dynamic> users = [];
   Api api;
 
   Future<void> getUsers() async {
@@ -14,13 +16,12 @@ class HomeViewModel extends ChangeNotifier {
       if (response.statusCode == 403) {
         print(response.reasonPhrase);
       } else {
-        final list = json.decode(response.body);
+        final List<dynamic> list = json.decode(response.body);
         users = list.map((model) => User.fromJson(model)).toList();
+        notifyListeners();
       }
     } catch (e) {
       print(e);
     }
-
-    notifyListeners();
   }
 }
