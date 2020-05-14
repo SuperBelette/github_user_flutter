@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/models/favorites.dart';
@@ -6,12 +7,12 @@ import 'package:githubuserflutter/modules/details/view.dart';
 import 'package:githubuserflutter/modules/favorites/view_model.dart';
 import 'package:provider/provider.dart';
 
-class Favorite extends StatelessWidget{
+class FavoriteView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => FavoritesViewModel(),
+      create: (context) => FavoritesViewModel(favorites: Provider.of<FavoritesNotifier>(context)),
       child: _View(),
     );
   }
@@ -41,7 +42,6 @@ class __ViewState extends State<_View> {
 
   @override
   Widget build(BuildContext context) {
-    var favorites = Provider.of<Favorites>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -49,12 +49,12 @@ class __ViewState extends State<_View> {
       ),
       body: GridView.count(
         crossAxisCount: 3,
-        children: List.generate(favorites.getLenght(), (index) {
+        children: List.generate(_viewModel.favorites.getLenght() ?? 0, (index) {
           return FlatButton(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(
-                builder: (context) => Details(user: favorites.get(index)),
+                builder: (context) => DetailsView(user: _viewModel.favorites.get(index)),
               ),
               );
             },
@@ -65,7 +65,7 @@ class __ViewState extends State<_View> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Image(
-                image: NetworkImage(favorites.get(index).avatarUrl),
+                image: CachedNetworkImageProvider(_viewModel.favorites.get(index).avatarUrl),
               ),
             ),
           );

@@ -7,8 +7,8 @@ import 'package:githubuserflutter/modules/favorites/view.dart';
 import 'package:githubuserflutter/modules/homepage/view_model.dart';
 import 'package:provider/provider.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  const HomeView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class __ViewState extends State<_View> {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Favorite(),
+                builder: (context) => FavoriteView(),
               ),
             ),
           ),
@@ -69,7 +69,7 @@ class __ViewState extends State<_View> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Details(
+                  builder: (context) => DetailsView(
                     user: _viewModel?.users[index],
                   ),
                 ),

@@ -18,8 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<Favorites>(create: (context) => Favorites()),
-        Provider<Api>(create: (context) => Api())
+        ChangeNotifierProvider(create: (context) => FavoritesNotifier(),
+        ),
+        Provider<Api>(create: (context) => Api(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Home(),
+        home: HomeView(),
       ),
     );
   }
