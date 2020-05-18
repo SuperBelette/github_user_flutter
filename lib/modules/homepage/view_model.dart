@@ -41,7 +41,7 @@ class HomeViewModel extends ChangeNotifier {
       theme.setTheme(themeData);
       themeBrightnessLight = false;
     } else {
-      ThemeData themeData = ThemeData(brightness: Brightness.dark);
+      ThemeData themeData = ThemeData(brightness: Brightness.light);
 
       theme.setTheme(themeData);
       themeBrightnessLight = true;

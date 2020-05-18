@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ThemeNotifier(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialAppWithTheme(
         title: 'Flutter Demo',
         home: HomeView(),
       ),
@@ -35,14 +35,23 @@ class MyApp extends StatelessWidget {
 }
 
 class MaterialAppWithTheme extends StatelessWidget {
+  const MaterialAppWithTheme({
+    Key key,
+    this.title,
+    this.home,
+  }) : super(key: key);
+
+  final String title;
+  final Widget home;
+
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<ThemeNotifier>(context);
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: themeData.getTheme(),
-      home: HomeView(),
+      home: home,
     );
   }
 }
