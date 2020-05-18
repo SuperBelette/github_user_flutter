@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:githubuserflutter/api/api.dart';
+import 'package:githubuserflutter/models/theme.dart';
 import 'package:githubuserflutter/modules/details/view.dart';
 import 'package:githubuserflutter/modules/favorites/view.dart';
 import 'package:githubuserflutter/modules/homepage/view_model.dart';
@@ -12,9 +13,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProxyProvider<Api, HomeViewModel>(
+    return ChangeNotifierProxyProvider2<Api, ThemeNotifier, HomeViewModel>(
       create: (context) => HomeViewModel(),
-      update: (_, api, viewmodel) => viewmodel..api = api,
+      update: (_, api, theme, viewmodel) => HomeViewModel(api: api, theme: theme),
       child: _View(),
     );
   }
@@ -58,6 +59,10 @@ class __ViewState extends State<_View> {
               ),
             ),
           ),
+          IconButton(
+            icon: Icon(Icons.brightness_3),
+            onPressed: () {_viewModel.changeBrightness();  },
+          )
         ],
       ),
       body: GridView.count(

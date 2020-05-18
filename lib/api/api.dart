@@ -15,6 +15,7 @@ class Api {
 
     try {
       response = await http.get(uri);
+
     }
     catch (error){
       String errorMessage = ' unable to get response from '  + baseUrl + ' error: ' + error;

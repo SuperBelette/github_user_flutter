@@ -16,8 +16,9 @@ class DetailsView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DetailsViewModel(user : user, favorites: Provider.of<FavoritesNotifier>(context)),
+    return ChangeNotifierProxyProvider<FavoritesNotifier, DetailsViewModel>(
+      create: (context) => DetailsViewModel(user : user),
+      update: (_,favorite ,viewmodel) => DetailsViewModel(favorites: favorite, user: user),
       child: _View(),
     );
   }

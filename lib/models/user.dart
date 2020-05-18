@@ -6,7 +6,7 @@ class User {
 
   User(this.login, this.avatarUrl, this.url);
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(Map<dynamic, dynamic> json) {
     return User(json['login'], json['avatar_url'], json['url']);
   }
 

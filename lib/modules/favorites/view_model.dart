@@ -5,7 +5,7 @@ import 'package:githubuserflutter/models/favorites.dart';
 class FavoritesViewModel extends ChangeNotifier{
   FavoritesViewModel({this.favorites});
 
-  final FavoritesNotifier favorites;
+  FavoritesNotifier favorites;
 
 
 

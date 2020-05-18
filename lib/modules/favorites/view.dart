@@ -11,8 +11,9 @@ class FavoriteView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FavoritesViewModel(favorites: Provider.of<FavoritesNotifier>(context)),
+    return ChangeNotifierProxyProvider(
+      create: (context) => FavoritesViewModel(),
+      update: (_,FavoritesNotifier favorites, FavoritesViewModel viewModel) => viewModel..favorites = favorites,
       child: _View(),
     );
   }
