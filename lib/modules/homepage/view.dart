@@ -1,0 +1,85 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:githubuserflutter/api/api.dart';
+import 'package:githubuserflutter/models/theme.dart';
+import 'package:githubuserflutter/modules/details/view.dart';
+import 'package:githubuserflutter/modules/favorites/view.dart';
+import 'package:githubuserflutter/modules/homepage/view_model.dart';
+import 'package:provider/provider.dart';
+
+class HomeView extends StatelessWidget {
+  const HomeView({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProxyProvider2<Api, ThemeNotifier, HomeViewModel>(
+      create: (context) => HomeViewModel(),
+      update: (_, api, theme, viewmodel) => viewmodel
+        ..api = api
+        ..theme = theme
+        ..getUsers(),
+      child: _View(),
+    );
+  }
+}
+
+class _View extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var _viewModel = Provider.of<HomeViewModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Github Users"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.favorite),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FavoriteView(),
+              ),
+            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.brightness_3),
+            onPressed: () {
+              _viewModel.changeBrightness();
+            },
+          )
+        ],
+      ),
+      body: GridView.count(
+        crossAxisCount: 3,
+        children: List.generate(_viewModel?.users?.length ?? 0, (index) {
+          return FlatButton(
+            padding: const EdgeInsets.all(0),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsView(
+                    user: _viewModel?.users[index],
+                  ),
+                ),
+              );
+            },
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: _viewModel?.users[index].avatarUrl,
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
