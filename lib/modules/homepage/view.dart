@@ -9,43 +9,28 @@ import 'package:githubuserflutter/modules/homepage/view_model.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key key}) : super(key: key);
+  const HomeView({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProxyProvider2<Api, ThemeNotifier, HomeViewModel>(
       create: (context) => HomeViewModel(),
-      update: (_, api, theme, viewmodel) => HomeViewModel(api: api, theme: theme),
+      update: (_, api, theme, viewmodel) => viewmodel
+        ..api = api
+        ..theme = theme
+        ..getUsers(),
       child: _View(),
     );
   }
 }
 
-class _View extends StatefulWidget {
-  const _View({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  __ViewState createState() => __ViewState();
-}
-
-class __ViewState extends State<_View> {
-  HomeViewModel _viewModel;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final _viewModel = context.read<HomeViewModel>();
-    if (_viewModel != this._viewModel) {
-      this._viewModel = _viewModel;
-      _viewModel.getUsers();
-    }
-  }
-
+class _View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var _viewModel = Provider.of<HomeViewModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Github Users"),
@@ -61,7 +46,9 @@ class __ViewState extends State<_View> {
           ),
           IconButton(
             icon: Icon(Icons.brightness_3),
-            onPressed: () {_viewModel.changeBrightness();  },
+            onPressed: () {
+              _viewModel.changeBrightness();
+            },
           )
         ],
       ),

@@ -6,7 +6,10 @@ import 'package:githubuserflutter/models/theme.dart';
 import 'package:githubuserflutter/models/user.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  HomeViewModel({this.api, this.theme});
+  HomeViewModel({
+    this.api,
+    this.theme,
+  });
 
   List<User> users = [];
   Api api;
@@ -14,6 +17,7 @@ class HomeViewModel extends ChangeNotifier {
   bool themeBrightnessLight = true;
 
   Future<void> getUsers() async {
+    print('getUsers');
     final response = await api.getUsers();
 
     try {
@@ -22,29 +26,27 @@ class HomeViewModel extends ChangeNotifier {
       } else {
         Iterable list = json.decode(response.body);
         users = list.map((model) => User.fromJson(model)).toList();
-        notifyListeners();
       }
     } catch (e) {
       print(e);
     }
+
+    notifyListeners();
   }
 
-  void changeBrightness(){
-    if (themeBrightnessLight){
-      ThemeData themeData = ThemeData(
-        brightness: Brightness.dark
-      );
+  void changeBrightness() {
+    if (themeBrightnessLight) {
+      ThemeData themeData = ThemeData(brightness: Brightness.dark);
 
       theme.setTheme(themeData);
       themeBrightnessLight = false;
-    }
-    else {
-      ThemeData themeData = ThemeData(
-          brightness: Brightness.dark
-      );
+    } else {
+      ThemeData themeData = ThemeData(brightness: Brightness.dark);
 
       theme.setTheme(themeData);
       themeBrightnessLight = true;
     }
+
+    notifyListeners();
   }
 }
