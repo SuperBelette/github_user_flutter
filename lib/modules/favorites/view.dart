@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,42 +6,21 @@ import 'package:githubuserflutter/modules/details/view.dart';
 import 'package:githubuserflutter/modules/favorites/view_model.dart';
 import 'package:provider/provider.dart';
 
-class FavoriteView extends StatelessWidget{
-
+class FavoriteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProxyProvider(
+    return ChangeNotifierProxyProvider<FavoritesNotifier, FavoritesViewModel>(
       create: (context) => FavoritesViewModel(),
-      update: (_,FavoritesNotifier favorites, FavoritesViewModel viewModel) => viewModel..favorites = favorites,
+      update: (_, favorites, viewModel) => viewModel..favorites = favorites,
       child: _View(),
     );
   }
-  
 }
 
-class _View extends StatefulWidget{
-  const _View({Key key,}) : super(key: key);
-
-  @override
-  __ViewState createState() => __ViewState();
-}
-
-class __ViewState extends State<_View> {
-  FavoritesViewModel _viewModel;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final _viewModel = context.read<FavoritesViewModel>();
-    if (_viewModel != this._viewModel) {
-      this._viewModel = _viewModel;
-    }
-
-  }
-
+class _View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _viewModel = Provider.of<FavoritesViewModel>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,9 +32,12 @@ class __ViewState extends State<_View> {
           return FlatButton(
             padding: const EdgeInsets.all(0),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => DetailsView(user: _viewModel.favorites.get(index)),
-              ),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      DetailsView(user: _viewModel.favorites.get(index)),
+                ),
               );
             },
             child: Card(
@@ -66,7 +47,8 @@ class __ViewState extends State<_View> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Image(
-                image: CachedNetworkImageProvider(_viewModel.favorites.get(index).avatarUrl),
+                image: CachedNetworkImageProvider(
+                    _viewModel.favorites.get(index).avatarUrl),
               ),
             ),
           );
@@ -74,7 +56,4 @@ class __ViewState extends State<_View> {
       ),
     );
   }
-
-
-
 }
